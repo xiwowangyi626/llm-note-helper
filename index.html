@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>多轮学习笔记整理助手</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-card">
+      <p class="eyebrow">Web LLM 应用制作与上线 · 纯前端项目</p>
+      <h1>多轮学习笔记整理助手</h1>
+      <p class="subtitle">
+        输入课程笔记，生成摘要、核心知识点与复习问题。生成后可以继续提出“更简短”“改成表格”“更适合考试复习”等要求，系统会基于本轮会话继续修改。
+      </p>
+    </section>
+
+    <section class="panel key-panel" aria-labelledby="key-title">
+      <div>
+        <h2 id="key-title">1. 填写 API Key</h2>
+        <p class="muted">API Key 只会用于本次浏览器请求，不会写入代码，也不会保存在本项目文件中。</p>
+      </div>
+      <label class="input-label" for="apiKey">阿里云百炼 API Key</label>
+      <div class="key-row">
+        <input id="apiKey" type="password" autocomplete="off" placeholder="请输入你的 API Key，例如 sk-xxxx" />
+        <button id="toggleKeyBtn" type="button" class="secondary-btn">显示</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="chat-title">
+      <div class="section-header">
+        <div>
+          <h2 id="chat-title">2. 输入笔记或修改要求</h2>
+          <p class="muted">第一次输入课程笔记；后续可以继续输入修改建议，实现多轮优化。</p>
+        </div>
+        <button id="clearBtn" type="button" class="ghost-btn">清空对话</button>
+      </div>
+
+      <div class="examples" aria-label="示例指令">
+        <button type="button" class="example-chip">把这段笔记整理成摘要、知识点和复习题</button>
+        <button type="button" class="example-chip">更适合期末考试复习</button>
+        <button type="button" class="example-chip">改成表格形式</button>
+        <button type="button" class="example-chip">压缩到 200 字以内</button>
+      </div>
+
+      <div id="chatBox" class="chat-box" aria-live="polite">
+        <div class="empty-state">
+          <strong>还没有开始对话</strong>
+          <span>请先输入 API Key 和课程笔记，然后点击“生成整理结果”。</span>
+        </div>
+      </div>
+
+      <label class="input-label" for="userInput">用户输入区</label>
+      <textarea id="userInput" rows="7" placeholder="例如：土力学中，土的抗剪强度由黏聚力和内摩擦角共同决定……"></textarea>
+
+      <div class="action-row">
+        <button id="sendBtn" type="button" class="primary-btn">生成整理结果</button>
+        <span id="statusText" class="status-text" role="status"></span>
+      </div>
+      <div id="errorBox" class="error-box" role="alert"></div>
+    </section>
+
+    <footer class="footer-note">
+      <p>模型：qwen3.6-plus · 接口：阿里云百炼 OpenAI 兼容接口 · 项目类型：HTML + CSS + JavaScript 纯前端</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
